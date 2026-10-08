@@ -605,11 +605,11 @@
     <div id="custom-modal" class="fixed inset-0 z-[90] hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm transition-opacity">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl">
             <h3 class="text-lg font-bold text-slate-100 mb-2 flex items-center gap-2">
-                <i data-lucide="alert-triangle" class="text-rose-500 w-5 h-5"></i> Confirmação
+                <i data-lucide="alert-triangle" class="text-rose-500 w-5 h-5"></i> Aviso do Sistema
             </h3>
             <p id="custom-modal-message" class="text-slate-400 text-sm mb-6"></p>
             <div class="flex justify-end gap-3">
-                <button onclick="closeConfirm()" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:bg-slate-800 transition-colors">Cancelar</button>
+                <button id="custom-modal-cancel-btn" onclick="closeConfirm()" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-400 hover:bg-slate-800 transition-colors">Cancelar</button>
                 <button id="custom-modal-confirm-btn" class="px-4 py-2 rounded-lg text-sm font-semibold bg-rose-500 hover:bg-rose-600 text-white shadow-lg shadow-rose-500/20 transition-all">Confirmar</button>
             </div>
         </div>
@@ -730,9 +730,20 @@
             }
         }
 
+        // Sistema padronizado de alertas e confirm sem uso do navegador nativo (anti-bloqueio)
         function showConfirm(message, onConfirm) {
             document.getElementById('custom-modal-message').innerText = message;
-            modalConfirmCallback = onConfirm;
+            const cancelBtn = document.getElementById('custom-modal-cancel-btn');
+            
+            // Se onConfirm for undefined/vazio, age apenas como um "Alert"
+            if (!onConfirm || onConfirm.toString() === "()=>{}") {
+                cancelBtn.style.display = 'none';
+                modalConfirmCallback = null;
+            } else {
+                cancelBtn.style.display = 'block';
+                modalConfirmCallback = onConfirm;
+            }
+            
             const modal = document.getElementById('custom-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -746,11 +757,12 @@
         }
 
         document.getElementById('custom-modal-confirm-btn').addEventListener('click', () => {
-            if (modalConfirmCallback) modalConfirmCallback();
-            closeConfirm();
+            const cb = modalConfirmCallback;
+            closeConfirm(); // Fechar primeiro caso a callback decida abrir o modal denovo.
+            if (cb) cb();
         });
 
-        // Funções de Backup e Restauração via JSON
+        // Funções de Backup e Restauração via JSON corrigidas usando Blob (suporta Base64 ilimitado)
         function exportBackup() {
             const backupData = {
                 toca_leao_gemini_key: state.apiKey,
@@ -766,13 +778,20 @@
                 exportDate: new Date().toISOString()
             };
 
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+            const jsonStr = JSON.stringify(backupData, null, 2);
+            // Uso de Blob para contornar limites de tamanho do URI devido as imagens Base64
+            const blob = new Blob([jsonStr], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            
             const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `toca_do_leao_backup_${new Date().toISOString().slice(0, 10)}.json`);
+            downloadAnchor.href = url;
+            downloadAnchor.download = `toca_do_leao_backup_${new Date().toISOString().slice(0, 10)}.json`;
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
-            downloadAnchor.remove();
+            document.body.removeChild(downloadAnchor);
+            
+            // Limpa o link da memória
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
         }
 
         function importBackup(event) {
@@ -786,7 +805,8 @@
                     const parsed = JSON.parse(content);
 
                     if (!parsed.days && !parsed.errorNotebook) {
-                        alert("Arquivo de backup inválido!");
+                        showConfirm("Arquivo de backup inválido!", ()=>{});
+                        event.target.value = ''; // Limpa o input
                         return;
                     }
 
@@ -802,12 +822,14 @@
                         if (parsed.timerMode !== undefined) localStorage.setItem('timerMode', parsed.timerMode);
                         if (parsed.pomodoroConfig !== undefined) localStorage.setItem('pomodoroConfig', parsed.pomodoroConfig);
 
-                        alert("✅ Backup restaurado com sucesso! A página será recarregada.");
-                        location.reload();
+                        showConfirm("✅ Backup restaurado com sucesso! Clique em Confirmar para recarregar a página.", () => {
+                            location.reload();
+                        });
                     });
                 } catch (err) {
-                    alert("Erro ao ler o arquivo JSON: " + err.message);
+                    showConfirm("Erro ao ler o arquivo JSON: " + err.message, ()=>{});
                 }
+                event.target.value = ''; // Limpa o input para poder importar o mesmo caso haja erro
             };
             reader.readAsText(file);
         }
@@ -898,7 +920,7 @@
                 console.error("Erro ao salvar dados:", e);
                 if (e.name === 'QuotaExceededError' || e.code === 22) {
                     if (!window.quotaAlertShown) {
-                        alert("⚠️ ATENÇÃO: Limite de armazenamento excedido (muitas imagens). Apague alguns erros para liberar espaço.");
+                        showConfirm("⚠️ ATENÇÃO: Limite de armazenamento excedido (muitas imagens). Apague alguns erros para liberar espaço.", ()=>{});
                         window.quotaAlertShown = true;
                     }
                 }
@@ -1423,6 +1445,25 @@
             renderEditalTab();
         }
 
+        async function callGeminiAPI(promptText) {
+            if (!state.apiKey) {
+                openApiKeyModal();
+                throw new Error("Chave API do Gemini não configurada.");
+            }
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${state.apiKey}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
+            });
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.error?.message || "Erro de comunicação com o Google Gemini.");
+            }
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        }
+
         async function organizarEditalComIA(editalId) {
             const rawTextElement = document.getElementById(`raw-edital-text-${editalId}`);
             if (!rawTextElement) return;
@@ -1518,7 +1559,7 @@
                 Retorne um JSON puramente (sem crases \`\`\`) contendo:
                 1. "raioXHtml": HTML simples (h3, h4, p, ul) com o Checape da Banca e Curva ABC geral.
                 2. "probabilidades": Um objeto mapeando a prioridade de CADA MATÉRIA e CADA TÓPICO fornecido acima.
-                   Para cada Matéria listada, crie uma chave com o NOME EXATO da matéria. O valor deve ter:
+                    Para cada Matéria listada, crie uma chave com o NOME EXATO da matéria. O valor deve ter:
                      - "prioridade": "ALTA", "MÉDIA" ou "BAIXA" (indicando a importância e incidência da matéria na prova).
                      - "dica": "Frase curta explicando se deve dar muita ou pouca atenção."
                      - "topicos": Um array mapeando os tópicos da matéria. Para cada tópico:
@@ -1747,7 +1788,6 @@
                     }
                 }
 
-                // Compatibilidade com array antigo ou o novo formato { topicos: [] }
                 let topicosProbList = [];
                 if (probData) {
                     if (Array.isArray(probData)) topicosProbList = probData;
@@ -1853,7 +1893,6 @@
                     </div>
                 </div>
                 
-                <!-- SEÇÃO: RAIO-X DA BANCA E TENDÊNCIAS -->
                 <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4 shadow-lg mt-6">
                     <div class="flex items-center justify-between">
                         <h4 class="font-bold text-purple-400 text-sm flex items-center gap-2">
@@ -2170,33 +2209,16 @@
             document.getElementById('modal-api-key').classList.remove('hidden');
             document.getElementById('modal-api-key').classList.add('flex');
         }
+        
         function closeApiKeyModal() {
             document.getElementById('modal-api-key').classList.add('hidden');
             document.getElementById('modal-api-key').classList.remove('flex');
         }
+        
         function saveApiKey() {
             state.apiKey = document.getElementById('input-gemini-key').value.trim();
             saveToStorage();
             closeApiKeyModal();
-        }
-
-        async function callGeminiAPI(promptText) {
-            if (!state.apiKey) {
-                openApiKeyModal();
-                throw new Error("Chave API do Gemini não configurada.");
-            }
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${state.apiKey}`;
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
-            });
-            if (!response.ok) {
-                const errData = await response.json();
-                throw new Error(errData.error?.message || "Erro de comunicação com o Google Gemini.");
-            }
-            const data = await response.json();
-            return data.candidates[0].content.parts[0].text;
         }
 
         async function gerarSimuladoIA() {
@@ -2647,3 +2669,4 @@
         window.addEventListener('beforeunload', () => saveToStorage());
     </script>
 </body>
+</html>
