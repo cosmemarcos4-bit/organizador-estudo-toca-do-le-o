@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toca do Leão Ciclos</title>
+    <title>Toca do Leão Ciclos - Registrador de Desempenho</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -62,14 +62,14 @@
         <header class="text-center mb-10 mt-4 relative no-print">
             <!-- Top Right Actions -->
             <div class="absolute right-0 top-0 hidden md:flex items-center gap-2">
-                <button onclick="exportBackup()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400 hover:text-emerald-300 text-xs font-bold transition shadow-md" title="Baixar Backup do Progresso">
-                    <i data-lucide="download" class="w-4 h-4"></i> Exportar
+                <button onclick="exportBackup()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400 hover:text-emerald-300 text-xs font-bold transition shadow-md hover:border-emerald-500/40" title="Exportar Backup para outro dispositivo">
+                    <i data-lucide="download" class="w-4 h-4"></i> Exportar Backup
                 </button>
-                <label class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-blue-400 hover:text-blue-300 text-xs font-bold transition shadow-md cursor-pointer" title="Restaurar de arquivo JSON">
-                    <i data-lucide="upload" class="w-4 h-4"></i> Importar
+                <label class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-blue-400 hover:text-blue-300 text-xs font-bold transition shadow-md cursor-pointer hover:border-blue-500/40" title="Restaurar de arquivo JSON">
+                    <i data-lucide="upload" class="w-4 h-4"></i> Importar Backup
                     <input type="file" id="import-file-input" accept=".json" onchange="importBackup(event)" class="hidden">
                 </label>
-                <button onclick="openApiKeyModal()" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 hover:text-amber-300 text-xs font-bold transition shadow-md">
+                <button onclick="openApiKeyModal()" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 hover:text-amber-300 text-xs font-bold transition shadow-md hover:border-amber-500/40">
                     <i data-lucide="key" class="w-4 h-4"></i> Chave API IA
                 </button>
             </div>
@@ -87,7 +87,7 @@
                     Toca do Leão Concursos
                 </h1>
             </div>
-            <p class="text-slate-400 font-medium tracking-wide mt-2">Domine seu tempo. Conquiste sua vaga.</p>
+            <p class="text-slate-400 font-medium tracking-wide mt-2">Domine seu tempo. Registre seu desempenho. Conquiste sua vaga.</p>
             
             <div class="flex justify-start md:justify-center gap-2 mt-8 bg-slate-900/50 p-1.5 rounded-2xl md:rounded-full w-full md:w-fit mx-auto border border-slate-800 backdrop-blur-sm overflow-x-auto">
                 <button id="btn-tab-cycle" onclick="switchTab('cycle')" class="flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 text-xs md:text-sm whitespace-nowrap shrink-0">
@@ -112,19 +112,19 @@
                     <i data-lucide="award" class="w-4 h-4"></i> Relatório & Metas
                 </button>
                 <button id="btn-tab-charts" onclick="switchTab('charts')" class="flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-800 text-xs md:text-sm whitespace-nowrap shrink-0">
-                    <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Estatísticas
+                    <i data-lucide="pie-chart" class="w-4 h-4 text-emerald-400"></i> Desempenho & Gráficos
                 </button>
             </div>
             
-            <div class="mt-4 flex justify-center gap-2 md:hidden">
-                <button onclick="exportBackup()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-bold">
-                    <i data-lucide="download" class="w-4 h-4"></i> Exportar JSON
+            <div class="flex justify-start md:justify-center gap-2 mt-4 md:hidden overflow-x-auto pb-1">
+                <button onclick="exportBackup()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400 text-xs font-bold whitespace-nowrap">
+                    <i data-lucide="download" class="w-4 h-4"></i> Exportar
                 </button>
-                <label class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-blue-400 text-xs font-bold cursor-pointer">
-                    <i data-lucide="upload" class="w-4 h-4"></i> Importar JSON
+                <label class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-blue-400 text-xs font-bold cursor-pointer whitespace-nowrap">
+                    <i data-lucide="upload" class="w-4 h-4"></i> Importar
                     <input type="file" id="import-file-input-mobile" accept=".json" onchange="importBackup(event)" class="hidden">
                 </label>
-                <button onclick="openApiKeyModal()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 text-xs font-bold">
+                <button onclick="openApiKeyModal()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 text-xs font-bold whitespace-nowrap">
                     <i data-lucide="key" class="w-4 h-4"></i> Chave API
                 </button>
             </div>
@@ -554,50 +554,140 @@
             </div>
         </main>
 
-        <!-- TAB 8: ESTATÍSTICAS -->
+        <!-- TAB 8: ESTATÍSTICAS & REGISTRADOR DE DESEMPENHO -->
         <main id="tab-content-charts" class="max-w-6xl mx-auto hidden space-y-8 pb-12 animation-fade">
-            <div>
-                <div class="mb-4">
-                    <h2 class="text-xl font-bold flex items-center gap-2 text-slate-100">
-                        <i data-lucide="pie-chart" class="text-amber-500"></i> Tempo Dedicado por Matéria
-                    </h2>
+            <!-- HEADER DE FILTROS DE PERÍODO -->
+            <div class="bg-slate-900/80 p-6 rounded-[2rem] border border-emerald-500/30 bg-gradient-to-r from-slate-900 via-emerald-950/20 to-slate-900 flex flex-col md:flex-row justify-between items-center gap-6 shadow-xl">
+                <div>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 mb-2">
+                        <i data-lucide="pie-chart" class="w-3.5 h-3.5"></i> Registrador de Desempenho
+                    </span>
+                    <h2 class="text-2xl font-extrabold text-white tracking-tight">Estatísticas & Rendimento em Questões</h2>
+                    <p class="text-xs text-slate-400 mt-1">Filtre seu progresso por período e registre acertos/erros e tempo por matéria em tempo real.</p>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 rounded-[2rem] p-6 shadow-xl relative">
-                    <div id="no-time-data" class="text-center py-16 text-slate-500 flex flex-col items-center gap-4">
-                        <div class="w-16 h-16 rounded-full bg-slate-800/50 flex items-center justify-center">
-                            <i data-lucide="clock" class="w-8 h-8 text-slate-600"></i>
-                        </div>
-                        <p>Inicie o cronômetro para gerar dados estatísticos.</p>
+
+                <!-- PERIOD SELECTOR BUTTONS (Hoje, Semana, Mês, Ano, Tudo) -->
+                <div class="flex items-center gap-1.5 bg-slate-950 p-1.5 rounded-2xl border border-slate-800 w-full md:w-auto overflow-x-auto">
+                    <button id="period-btn-today" onclick="setStatsPeriod('today')" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-emerald-500 text-slate-950 shadow-md whitespace-nowrap">
+                        Hoje
+                    </button>
+                    <button id="period-btn-week" onclick="setStatsPeriod('week')" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-900 whitespace-nowrap">
+                        Esta Semana
+                    </button>
+                    <button id="period-btn-month" onclick="setStatsPeriod('month')" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-900 whitespace-nowrap">
+                        Este Mês
+                    </button>
+                    <button id="period-btn-year" onclick="setStatsPeriod('year')" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-900 whitespace-nowrap">
+                        Este Ano
+                    </button>
+                    <button id="period-btn-all" onclick="setStatsPeriod('all')" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-900 whitespace-nowrap">
+                        Tudo
+                    </button>
+                </div>
+            </div>
+
+            <!-- KPI RESUMO DO PERÍODO SELECIONADO -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Tempo Dedicado</span>
+                    <span id="stats-kpi-time" class="font-timer text-2xl font-bold text-amber-400 mt-2">00:00:00</span>
+                    <span class="text-[10px] text-slate-500 mt-1" id="stats-kpi-time-sub">No período selecionado</span>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Questões Resolvidas</span>
+                    <span id="stats-kpi-total-q" class="font-timer text-2xl font-bold text-white mt-2">0</span>
+                    <span class="text-[10px] text-slate-500 mt-1" id="stats-kpi-q-sub">Certas + Erradas</span>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Acertos / Erros</span>
+                    <div class="flex items-baseline gap-2 mt-2">
+                        <span id="stats-kpi-correct" class="font-timer text-2xl font-bold text-emerald-400">0</span>
+                        <span class="text-slate-600 font-bold">/</span>
+                        <span id="stats-kpi-incorrect" class="font-timer text-2xl font-bold text-rose-400">0</span>
                     </div>
-                    <div id="time-chart-container" class="hidden h-[350px] w-full">
-                        <canvas id="timeChart"></canvas>
+                    <span class="text-[10px] text-slate-500 mt-1">Saldo do período</span>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Taxa de APROVEITAMENTO</span>
+                    <span id="stats-kpi-accuracy" class="font-timer text-2xl font-bold text-emerald-400 mt-2">--</span>
+                    <span id="stats-kpi-accuracy-label" class="text-[10px] text-slate-500 mt-1">Desempenho</span>
+                </div>
+            </div>
+
+            <!-- PAINEL DE GRÁFICOS EM PIZZA -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- PIE CHART 1: TEMPO DEDICADO POR MATÉRIA -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-[2rem] p-6 shadow-xl relative flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-base font-bold flex items-center gap-2 text-slate-100">
+                            <i data-lucide="pie-chart" class="text-amber-500 w-5 h-5"></i> Tempo por Matéria: Ciclo vs Revisão
+                        </h3>
+                        <span class="text-xs text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20" id="pie-time-period-tag">Hoje</span>
+                    </div>
+                    
+                    <div id="no-time-pie-data" class="text-center py-16 text-slate-500 flex flex-col items-center gap-3">
+                        <i data-lucide="clock" class="w-10 h-10 text-slate-600"></i>
+                        <p class="text-xs">Nenhum tempo registrado para o período selecionado.</p>
+                    </div>
+
+                    <div id="time-pie-chart-container" class="hidden flex-col w-full relative">
+                        <div class="h-[260px] w-full relative">
+                            <canvas id="timePieChart"></canvas>
+                        </div>
+                        <!-- SOMATÓRIO DE HORAS E LEGENDA DETALHADA -->
+                        <div id="time-pie-summary-box" class="mt-4 pt-3 border-t border-slate-800/80 text-center space-y-2">
+                            <div class="flex items-center justify-center gap-4 text-xs font-bold flex-wrap">
+                                <span class="text-amber-400 flex items-center gap-1.5"><i data-lucide="book-open" class="w-3.5 h-3.5"></i> Ciclo: <b id="total-time-cycle-fmt">00:00:00</b></span>
+                                <span class="text-purple-400 flex items-center gap-1.5"><i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> Revisão: <b id="total-time-review-fmt">00:00:00</b></span>
+                            </div>
+                            <div class="bg-slate-950/90 border border-slate-800 rounded-xl py-2 px-4 inline-flex items-center gap-2 shadow-inner">
+                                <i data-lucide="calculator" class="w-4 h-4 text-amber-400"></i>
+                                <span class="text-xs text-slate-300 font-bold">Somatório Total de Horas:</span>
+                                <span id="total-time-sum-fmt" class="text-amber-400 font-timer text-sm font-bold">00:00:00</span>
+                                <span id="total-time-sum-hours" class="text-slate-400 text-xs font-mono font-bold bg-slate-900 px-2 py-0.5 rounded border border-slate-800">(0.0h)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PIE CHART 2: ACERTOS VS ERROS -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-[2rem] p-6 shadow-xl relative flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-base font-bold flex items-center gap-2 text-slate-100">
+                            <i data-lucide="target" class="text-emerald-500 w-5 h-5"></i> Proporção de Acertos vs Erros (Pizza)
+                        </h3>
+                        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20" id="pie-accuracy-period-tag">Hoje</span>
+                    </div>
+                    
+                    <div id="no-accuracy-pie-data" class="text-center py-16 text-slate-500 flex flex-col items-center gap-3">
+                        <i data-lucide="check-circle-2" class="w-10 h-10 text-slate-600"></i>
+                        <p class="text-xs">Nenhuma questão registrada para o período selecionado.</p>
+                    </div>
+
+                    <div id="accuracy-pie-chart-container" class="hidden h-[280px] w-full relative">
+                        <canvas id="accuracyPieChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <div>
-                <div class="mb-4">
-                    <h2 class="text-xl font-bold flex items-center gap-2 text-slate-100">
-                        <i data-lucide="target" class="text-emerald-500"></i> Desempenho em Questões
-                    </h2>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 rounded-[2rem] p-6 shadow-xl relative">
-                    <div id="no-questions-data" class="text-center py-16 text-slate-500 flex flex-col items-center gap-4">
-                        <div class="w-16 h-16 rounded-full bg-slate-800/50 flex items-center justify-center">
-                            <i data-lucide="check-circle-2" class="w-8 h-8 text-slate-600"></i>
-                        </div>
-                        <p>Registre seus acertos e erros no ciclo para ver seu desempenho.</p>
-                    </div>
-                    <div id="questions-chart-container" class="hidden h-[400px] w-full">
-                        <canvas id="questionsChart"></canvas>
+            <!-- BLOCOS POR MATÉRIA PARA O PERÍODO SELECIONADO -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-[2rem] p-6 md:p-8 space-y-6 shadow-xl">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i data-lucide="layout-grid" class="text-amber-500 w-5 h-5"></i> Registro de Desempenho por Matéria
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">Adicione ou modifique rapidamente questões e horas estudadas para o período selecionado (<b id="period-blocks-label" class="text-amber-400">Hoje</b>).</p>
                     </div>
                 </div>
+
+                <div id="subject-performance-blocks-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </div>
         </main>
 
         <footer class="max-w-6xl mx-auto mt-4 pt-6 border-t border-slate-800/50 text-center text-slate-600 text-sm pb-8 flex items-center justify-center gap-2 no-print">
             <i data-lucide="flame" class="w-4 h-4 text-orange-500/50"></i>
-            Toca do Leão Ciclos &copy; <span id="current-year"></span> - Foco Extremo.
+            Toca do Leão Ciclos &copy; <span id="current-year"></span> - Registrador de Desempenho.
         </footer>
     </div>
 
@@ -631,7 +721,7 @@
             </div>
             <div class="space-y-4 text-sm mt-4">
                 <p class="text-slate-300 leading-relaxed">
-                    A chave fica salva no seu navegador. Pegue gratuitamente no Google AI Studio.
+                    A chave fica salva no seu navegador e pode ser exportada no backup. Pegue gratuitamente no Google AI Studio.
                 </p>
                 <div>
                     <input type="password" id="input-gemini-key" placeholder="Cole sua chave (AIzaSy...) aqui" class="w-full bg-slate-950 border border-slate-700 text-white rounded-xl p-3.5 outline-none font-mono text-sm">
@@ -644,7 +734,6 @@
         </div>
     </div>
 
-    <!-- Modal Novo Concurso (Edital Verticalizado) -->
     <div id="modal-new-contest" class="fixed inset-0 z-[85] hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-[2rem] p-6 md:p-8 max-w-md w-full shadow-2xl relative">
             <button onclick="closeNewContestModal()" class="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors">
@@ -676,7 +765,7 @@
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-xl w-full shadow-2xl my-8 relative">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-xl font-bold text-slate-100 flex items-center gap-2">
-                    <i data-lucide="alert-octagon" class="text-rose-500"></i> Registrar Nova Questão
+                    <i data-lucide="alert-octagon" class="text-rose-500"></i> Registrar Nova Questão Errada
                 </h3>
                 <button onclick="closeErrorModal()" class="text-slate-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
@@ -716,7 +805,7 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT LOGIC & APPLICATION ENGINE -->
     <script>
         let modalConfirmCallback = null;
         
@@ -730,12 +819,10 @@
             }
         }
 
-        // Sistema padronizado de alertas e confirm sem uso do navegador nativo (anti-bloqueio)
         function showConfirm(message, onConfirm) {
             document.getElementById('custom-modal-message').innerText = message;
             const cancelBtn = document.getElementById('custom-modal-cancel-btn');
             
-            // Se onConfirm for undefined/vazio, age apenas como um "Alert"
             if (!onConfirm || onConfirm.toString() === "()=>{}") {
                 cancelBtn.style.display = 'none';
                 modalConfirmCallback = null;
@@ -758,11 +845,10 @@
 
         document.getElementById('custom-modal-confirm-btn').addEventListener('click', () => {
             const cb = modalConfirmCallback;
-            closeConfirm(); // Fechar primeiro caso a callback decida abrir o modal denovo.
+            closeConfirm();
             if (cb) cb();
         });
 
-        // Funções de Backup e Restauração via JSON corrigidas usando Blob (suporta Base64 ilimitado)
         function exportBackup() {
             const backupData = {
                 toca_leao_gemini_key: state.apiKey,
@@ -775,11 +861,13 @@
                 toca_leao_active_edital: state.activeEditalId,
                 timerMode: state.timerMode,
                 pomodoroConfig: state.pomodoroConfig,
-                exportDate: new Date().toISOString()
+                performanceLogs: state.performanceLogs,
+                statsPeriod: state.statsPeriod,
+                exportDate: new Date().toISOString(),
+                version: "2.0"
             };
 
             const jsonStr = JSON.stringify(backupData, null, 2);
-            // Uso de Blob para contornar limites de tamanho do URI devido as imagens Base64
             const blob = new Blob([jsonStr], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             
@@ -790,7 +878,6 @@
             downloadAnchor.click();
             document.body.removeChild(downloadAnchor);
             
-            // Limpa o link da memória
             setTimeout(() => URL.revokeObjectURL(url), 1000);
         }
 
@@ -804,13 +891,13 @@
                     const content = e.target.result;
                     const parsed = JSON.parse(content);
 
-                    if (!parsed.days && !parsed.errorNotebook) {
+                    if (!parsed.days && !parsed.errorNotebook && !parsed.performanceLogs) {
                         showConfirm("Arquivo de backup inválido!", ()=>{});
-                        event.target.value = ''; // Limpa o input
+                        event.target.value = '';
                         return;
                     }
 
-                    showConfirm("Tem certeza que deseja restaurar este backup? Isso substituirá os dados atuais do navegador.", () => {
+                    showConfirm("Tem certeza que deseja restaurar este backup? Isso atualizará todos os dados do seu desempenho neste dispositivo.", () => {
                         if (parsed.toca_leao_gemini_key !== undefined) localStorage.setItem('toca_leao_gemini_key', parsed.toca_leao_gemini_key);
                         if (parsed.totalTimeMs !== undefined) localStorage.setItem('totalTimeMs', parsed.totalTimeMs);
                         if (parsed.dailyTimeMs !== undefined) localStorage.setItem('dailyTimeMs', parsed.dailyTimeMs);
@@ -821,15 +908,17 @@
                         if (parsed.toca_leao_active_edital !== undefined) localStorage.setItem('toca_leao_active_edital', parsed.toca_leao_active_edital);
                         if (parsed.timerMode !== undefined) localStorage.setItem('timerMode', parsed.timerMode);
                         if (parsed.pomodoroConfig !== undefined) localStorage.setItem('pomodoroConfig', parsed.pomodoroConfig);
+                        if (parsed.performanceLogs !== undefined) localStorage.setItem('toca_leao_perf_logs', JSON.stringify(parsed.performanceLogs));
+                        if (parsed.statsPeriod !== undefined) localStorage.setItem('toca_leao_stats_period', parsed.statsPeriod);
 
-                        showConfirm("✅ Backup restaurado com sucesso! Clique em Confirmar para recarregar a página.", () => {
+                        showConfirm("✅ Backup restaurado com sucesso! Clique em Confirmar para reiniciar o app.", () => {
                             location.reload();
                         });
                     });
                 } catch (err) {
                     showConfirm("Erro ao ler o arquivo JSON: " + err.message, ()=>{});
                 }
-                event.target.value = ''; // Limpa o input para poder importar o mesmo caso haja erro
+                event.target.value = '';
             };
             reader.readAsText(file);
         }
@@ -849,6 +938,8 @@
                 ]
             }
         ]);
+
+        const savedPerfLogs = safeJSONParse('toca_leao_perf_logs', []);
 
         let state = {
             apiKey: localStorage.getItem('toca_leao_gemini_key') || '',
@@ -882,7 +973,9 @@
                     ]
                 }
             ]),
-            activeEditalId: localStorage.getItem('toca_leao_active_edital') || 'edital-default'
+            activeEditalId: localStorage.getItem('toca_leao_active_edital') || 'edital-default',
+            performanceLogs: savedPerfLogs,
+            statsPeriod: localStorage.getItem('toca_leao_stats_period') || 'today'
         };
 
         state.errorsList = state.errorsList.map(item => ({
@@ -894,8 +987,8 @@
         let lastTickTime = Date.now();
         let uiUpdateInterval = null;
         let storageSaveInterval = null;
-        let timeChartInstance = null;
-        let questionsChartInstance = null;
+        let timePieChartInstance = null;
+        let accuracyPieChartInstance = null;
         let domCache = {};
 
         function saveToStorage() {
@@ -916,6 +1009,8 @@
                 localStorage.setItem('timerMode', state.timerMode);
                 localStorage.setItem('pomodoroConfig', state.pomodoroConfig);
                 localStorage.setItem('activeTab', state.activeTab);
+                localStorage.setItem('toca_leao_perf_logs', JSON.stringify(state.performanceLogs));
+                localStorage.setItem('toca_leao_stats_period', state.statsPeriod);
             } catch (e) {
                 console.error("Erro ao salvar dados:", e);
                 if (e.name === 'QuotaExceededError' || e.code === 22) {
@@ -948,6 +1043,99 @@
             }
         }
 
+        function getTodayDateStr() {
+            const d = new Date();
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function isDateInPeriod(timestamp, period) {
+            if (period === 'all') return true;
+            const logDate = new Date(timestamp);
+            const now = new Date();
+
+            const isSameDay = logDate.getFullYear() === now.getFullYear() &&
+                              logDate.getMonth() === now.getMonth() &&
+                              logDate.getDate() === now.getDate();
+
+            if (period === 'today') return isSameDay;
+
+            if (period === 'week') {
+                const dayOfWeek = now.getDay() || 7;
+                const startOfWeek = new Date(now);
+                startOfWeek.setHours(0, 0, 0, 0);
+                startOfWeek.setDate(now.getDate() - (dayOfWeek - 1));
+                const endOfWeek = new Date(startOfWeek);
+                endOfWeek.setDate(startOfWeek.getDate() + 7);
+                return logDate >= startOfWeek && logDate < endOfWeek;
+            }
+
+            if (period === 'month') {
+                return logDate.getFullYear() === now.getFullYear() && logDate.getMonth() === now.getMonth();
+            }
+
+            if (period === 'year') {
+                return logDate.getFullYear() === now.getFullYear();
+            }
+
+            return false;
+        }
+
+        function addPerformanceTime(subjectId, subjectName, deltaMs, activity = 'study') {
+            if (!subjectId || deltaMs <= 0) return;
+            const todayStr = getTodayDateStr();
+            
+            let log = state.performanceLogs.find(l => l.subjectId === subjectId && l.dateStr === todayStr);
+            if (!log) {
+                log = {
+                    id: 'perf-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+                    subjectId: subjectId,
+                    subjectName: subjectName || 'Matéria',
+                    cycleMs: 0,
+                    reviewMs: 0,
+                    studyMs: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    dateStr: todayStr,
+                    timestamp: Date.now()
+                };
+                state.performanceLogs.push(log);
+            }
+            if (activity === 'review') {
+                log.reviewMs = (log.reviewMs || 0) + deltaMs;
+            } else {
+                log.cycleMs = (log.cycleMs || log.studyMs || 0) + deltaMs;
+                log.studyMs = log.cycleMs;
+            }
+            log.timestamp = Date.now();
+            if (subjectName) log.subjectName = subjectName;
+        }
+
+        function recordSubjectQuestions(subjectId, subjectName, correctDelta, incorrectDelta) {
+            const todayStr = getTodayDateStr();
+            let log = state.performanceLogs.find(l => l.subjectId === subjectId && l.dateStr === todayStr);
+            if (!log) {
+                log = {
+                    id: 'perf-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+                    subjectId: subjectId,
+                    subjectName: subjectName || 'Matéria',
+                    studyMs: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    dateStr: todayStr,
+                    timestamp: Date.now()
+                };
+                state.performanceLogs.push(log);
+            }
+            log.correct = Math.max(0, log.correct + correctDelta);
+            log.incorrect = Math.max(0, log.incorrect + incorrectDelta);
+            log.timestamp = Date.now();
+            if (subjectName) log.subjectName = subjectName;
+            saveToStorage();
+        }
+
         function timerLoop() {
             const now = Date.now();
             let deltaMs = Math.max(0, now - lastTickTime);
@@ -967,6 +1155,13 @@
                         state.subjectTimesMs[state.activeSubjectId] = {study: 0, review: 0};
                     }
                     state.subjectTimesMs[state.activeSubjectId][state.currentActivity] += actualDelta;
+
+                    let currentSubName = 'Matéria';
+                    for (const d of state.days) {
+                        const found = d.subjects.find(s => s.id === state.activeSubjectId);
+                        if (found) { currentSubName = found.name; break; }
+                    }
+                    addPerformanceTime(state.activeSubjectId, currentSubName, actualDelta, state.currentActivity);
                 }
 
                 if (state.timerMode === 'pomodoro') {
@@ -1273,15 +1468,34 @@
         function updateSubjectQuestions(dayId, subjectId, field, value) {
             const numVal = value === '' ? 0 : parseInt(value);
             if (isNaN(numVal) || numVal < 0) return;
+
+            let subName = 'Matéria';
+            let oldVal = 0;
+
             state.days = state.days.map(day => {
                 if (day.id === dayId) {
                     return { ...day, subjects: day.subjects.map(sub => {
-                        if (sub.id === subjectId) return { ...sub, [field]: numVal };
+                        if (sub.id === subjectId) {
+                            subName = sub.name;
+                            oldVal = sub[field] || 0;
+                            return { ...sub, [field]: numVal };
+                        }
                         return sub;
                     })};
                 }
                 return day;
             });
+
+            const diff = numVal - oldVal;
+            if (diff !== 0) {
+                const isCorrectField = field.toLowerCase().includes('correct') && !field.toLowerCase().includes('incorrect');
+                if (isCorrectField) {
+                    recordSubjectQuestions(subjectId, subName, diff, 0);
+                } else {
+                    recordSubjectQuestions(subjectId, subName, 0, diff);
+                }
+            }
+
             saveToStorage();
             renderDaysAndSubjects();
             renderReviewTab();
@@ -1774,7 +1988,6 @@
                 let subjectBadge = '';
                 let subjectDica = '';
                 
-                // Trata o formato novo de probabilidades da matéria inteira
                 if (probData && typeof probData === 'object' && probData.prioridade) {
                     let pColor = 'bg-slate-800 text-slate-300 border-slate-700';
                     let prio = probData.prioridade.toUpperCase();
@@ -1813,7 +2026,6 @@
 
                         let nivelStr = (matchedProb.nivel || 'Média').toUpperCase();
                         
-                        // Escala visual Horizontal Baseada no nível / Porcentagem
                         if (pct >= 70 || nivelStr.includes('ALTA') || nivelStr.includes('MUITO')) {
                             barColor = 'bg-gradient-to-r from-orange-500 to-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]';
                             textColor = 'text-rose-400';
@@ -2544,55 +2756,368 @@
             lucide.createIcons();
         }
 
-        function renderCharts() {
-            const rawData = state.days.flatMap(day => day.subjects.map(sub => ({
-                name: sub.name,
-                sMins: (state.subjectTimesMs[sub.id]?.study || 0) / 60000,
-                rMins: (state.subjectTimesMs[sub.id]?.review || 0) / 60000,
-                sC: sub.studyCorrect || 0, sI: sub.studyIncorrect || 0,
-                rC: sub.reviewCorrect || 0, rI: sub.reviewIncorrect || 0
-            })));
+        function setStatsPeriod(period) {
+            state.statsPeriod = period;
+            const periods = ['today', 'week', 'month', 'year', 'all'];
+            periods.forEach(p => {
+                const btn = document.getElementById(`period-btn-${p}`);
+                if (btn) {
+                    btn.className = (p === period)
+                        ? "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-emerald-500 text-slate-950 shadow-md whitespace-nowrap"
+                        : "px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-900 whitespace-nowrap";
+                }
+            });
 
-            const timeCanvas = document.getElementById('timeChart');
-            if (timeCanvas) {
-                if (timeChartInstance) timeChartInstance.destroy();
-                timeChartInstance = new Chart(timeCanvas, {
-                    type: 'bar',
-                    data: {
-                        labels: rawData.map(d => d.name),
-                        datasets: [
-                            { label: 'Estudo (min)', data: rawData.map(d => d.sMins), backgroundColor: '#f59e0b' },
-                            { label: 'Revisão (min)', data: rawData.map(d => d.rMins), backgroundColor: '#a855f7' }
-                        ]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false }
+            const labelsMap = {
+                'today': 'Hoje',
+                'week': 'Esta Semana',
+                'month': 'Este Mês',
+                'year': 'Este Ano',
+                'all': 'Todo o Histórico'
+            };
+
+            const periodText = labelsMap[period] || 'Período';
+            updateDOM('pie-time-period-tag', periodText);
+            updateDOM('pie-accuracy-period-tag', periodText);
+            updateDOM('period-blocks-label', periodText);
+
+            saveToStorage();
+            renderChartsAndPerformanceBlocks();
+        }
+
+        function quickLogQuestion(subjectId, subjectName, isCorrect) {
+            recordSubjectQuestions(subjectId, subjectName, isCorrect ? 1 : 0, isCorrect ? 0 : 1);
+            
+            for (let day of state.days) {
+                let sub = day.subjects.find(s => s.id === subjectId);
+                if (sub) {
+                    if (isCorrect) sub.studyCorrect = (sub.studyCorrect || 0) + 1;
+                    else sub.studyIncorrect = (sub.studyIncorrect || 0) + 1;
+                    break;
+                }
+            }
+            saveToStorage();
+            renderChartsAndPerformanceBlocks();
+            renderDaysAndSubjects();
+        }
+
+        function quickLogTimeMinutes(subjectId, subjectName, mins, activity = 'study') {
+            const deltaMs = mins * 60 * 1000;
+            addPerformanceTime(subjectId, subjectName, deltaMs, activity);
+            if (!state.subjectTimesMs[subjectId]) {
+                state.subjectTimesMs[subjectId] = { study: 0, review: 0 };
+            }
+            if (activity === 'review') {
+                state.subjectTimesMs[subjectId].review += deltaMs;
+            } else {
+                state.subjectTimesMs[subjectId].study += deltaMs;
+            }
+            state.totalTimeMs += deltaMs;
+            state.dailyTimeMs += deltaMs;
+            saveToStorage();
+            renderChartsAndPerformanceBlocks();
+            renderDaysAndSubjects();
+            if (state.activeTab === 'review') renderReviewTab();
+            updateTimerDisplay();
+        }
+
+        function renderChartsAndPerformanceBlocks() {
+            const currentPeriod = state.statsPeriod || 'today';
+            
+            const filteredLogs = state.performanceLogs.filter(log => isDateInPeriod(log.timestamp, currentPeriod));
+
+            let allSubjectsMap = {};
+            state.days.forEach(d => {
+                d.subjects.forEach(s => {
+                    allSubjectsMap[s.id] = { id: s.id, name: s.name, dayName: d.name };
+                });
+            });
+
+            let aggregated = {};
+
+            Object.keys(allSubjectsMap).forEach(sId => {
+                aggregated[sId] = {
+                    id: sId,
+                    name: allSubjectsMap[sId].name,
+                    dayName: allSubjectsMap[sId].dayName,
+                    cycleMs: 0,
+                    reviewMs: 0,
+                    correct: 0,
+                    incorrect: 0
+                };
+            });
+
+            filteredLogs.forEach(log => {
+                if (!aggregated[log.subjectId]) {
+                    aggregated[log.subjectId] = {
+                        id: log.subjectId,
+                        name: log.subjectName || 'Matéria',
+                        dayName: '',
+                        cycleMs: 0,
+                        reviewMs: 0,
+                        correct: 0,
+                        incorrect: 0
+                    };
+                }
+                const cMs = log.cycleMs !== undefined ? log.cycleMs : (log.reviewMs ? 0 : (log.studyMs || 0));
+                const rMs = log.reviewMs || 0;
+                aggregated[log.subjectId].cycleMs += cMs;
+                aggregated[log.subjectId].reviewMs += rMs;
+                aggregated[log.subjectId].correct += log.correct || 0;
+                aggregated[log.subjectId].incorrect += log.incorrect || 0;
+            });
+
+            if (currentPeriod === 'all') {
+                state.days.forEach(d => {
+                    d.subjects.forEach(s => {
+                        const times = state.subjectTimesMs[s.id] || { study: 0, review: 0 };
+                        if (aggregated[s.id]) {
+                            aggregated[s.id].cycleMs = Math.max(aggregated[s.id].cycleMs, times.study || 0);
+                            aggregated[s.id].reviewMs = Math.max(aggregated[s.id].reviewMs, times.review || 0);
+                            aggregated[s.id].correct = Math.max(aggregated[s.id].correct, (s.studyCorrect || 0) + (s.reviewCorrect || 0));
+                            aggregated[s.id].incorrect = Math.max(aggregated[s.id].incorrect, (s.studyIncorrect || 0) + (s.reviewIncorrect || 0));
+                        }
+                    });
                 });
             }
 
-            const qCanvas = document.getElementById('questionsChart');
-            if (qCanvas) {
-                if (questionsChartInstance) questionsChartInstance.destroy();
-                questionsChartInstance = new Chart(qCanvas, {
-                    type: 'bar',
-                    data: {
-                        labels: rawData.flatMap(d => [d.name + ' (Est)', d.name + ' (Rev)']),
-                        datasets: [
-                            { label: 'Acertos', data: rawData.flatMap(d => [d.sC, d.rC]), backgroundColor: '#10b981' },
-                            { label: 'Erros', data: rawData.flatMap(d => [d.sI, d.rI]), backgroundColor: '#f43f5e' }
-                        ]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y' }
-                });
+            const activeList = Object.values(aggregated);
+
+            let totalPeriodCycleMs = 0;
+            let totalPeriodReviewMs = 0;
+            let totalPeriodCorrect = 0;
+            let totalPeriodIncorrect = 0;
+
+            activeList.forEach(item => {
+                totalPeriodCycleMs += item.cycleMs;
+                totalPeriodReviewMs += item.reviewMs;
+                totalPeriodCorrect += item.correct;
+                totalPeriodIncorrect += item.incorrect;
+            });
+
+            const totalPeriodMs = totalPeriodCycleMs + totalPeriodReviewMs;
+            const totalPeriodQuestions = totalPeriodCorrect + totalPeriodIncorrect;
+            const periodAccuracy = totalPeriodQuestions > 0 ? (totalPeriodCorrect / totalPeriodQuestions) * 100 : null;
+
+            updateDOM('stats-kpi-time', formatSimpleTime(totalPeriodMs));
+            updateDOM('stats-kpi-total-q', totalPeriodQuestions.toString());
+            updateDOM('stats-kpi-correct', totalPeriodCorrect.toString());
+            updateDOM('stats-kpi-incorrect', totalPeriodIncorrect.toString());
+
+            const timeSub = document.getElementById('stats-kpi-time-sub');
+            if (timeSub) {
+                const cFmt = formatSimpleTime(totalPeriodCycleMs);
+                const rFmt = formatSimpleTime(totalPeriodReviewMs);
+                timeSub.innerHTML = `Ciclo: <b class="text-amber-400">${cFmt}</b> | Rev: <b class="text-purple-400">${rFmt}</b>`;
             }
 
-            const tContainer = document.getElementById('time-chart-container');
-            const qContainer = document.getElementById('questions-chart-container');
-            const noT = document.getElementById('no-time-data');
-            const noQ = document.getElementById('no-questions-data');
-            if (tContainer) tContainer.classList.remove('hidden');
-            if (qContainer) qContainer.classList.remove('hidden');
-            if (noT) noT.classList.add('hidden');
-            if (noQ) noQ.classList.add('hidden');
+            const accuracyEl = document.getElementById('stats-kpi-accuracy');
+            if (accuracyEl) {
+                if (periodAccuracy === null) {
+                    accuracyEl.innerText = '--';
+                    accuracyEl.className = 'font-timer text-2xl font-bold text-slate-500 mt-2';
+                } else {
+                    accuracyEl.innerText = `${periodAccuracy.toFixed(1)}%`;
+                    accuracyEl.className = `font-timer text-2xl font-bold ${periodAccuracy >= 70 ? 'text-emerald-400' : 'text-rose-400'} mt-2`;
+                }
+            }
+
+            const cycleColors = ['#f59e0b', '#06b6d4', '#10b981', '#f97316', '#3b82f6', '#eab308', '#14b8a6'];
+            const reviewColors = ['#a855f7', '#d946ef', '#c084fc', '#ec4899', '#818cf8', '#f43f5e', '#a78bfa'];
+
+            let sliceLabels = [];
+            let sliceData = [];
+            let sliceColors = [];
+            let cycleColorIdx = 0;
+            let reviewColorIdx = 0;
+
+            activeList.forEach(item => {
+                if (item.cycleMs > 0) {
+                    sliceLabels.push(`${item.name} (Ciclo)`);
+                    sliceData.push(Math.round(item.cycleMs / 60000) || 1);
+                    sliceColors.push(cycleColors[cycleColorIdx % cycleColors.length]);
+                    cycleColorIdx++;
+                }
+                if (item.reviewMs > 0) {
+                    sliceLabels.push(`${item.name} (Revisão)`);
+                    sliceData.push(Math.round(item.reviewMs / 60000) || 1);
+                    sliceColors.push(reviewColors[reviewColorIdx % reviewColors.length]);
+                    reviewColorIdx++;
+                }
+            });
+
+            const timePieCanvas = document.getElementById('timePieChart');
+            const noTimePieDiv = document.getElementById('no-time-pie-data');
+            const timePieContainer = document.getElementById('time-pie-chart-container');
+
+            if (sliceData.length > 0 && timePieCanvas) {
+                noTimePieDiv.classList.add('hidden');
+                timePieContainer.classList.remove('hidden');
+                timePieContainer.classList.add('flex');
+
+                if (timePieChartInstance) timePieChartInstance.destroy();
+                timePieChartInstance = new Chart(timePieCanvas, {
+                    type: 'pie',
+                    data: {
+                        labels: sliceLabels,
+                        datasets: [{
+                            data: sliceData,
+                            backgroundColor: sliceColors,
+                            borderWidth: 2,
+                            borderColor: '#020617'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { color: '#cbd5e1', font: { family: 'Inter', size: 10, weight: '500' }, boxWidth: 12 }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const mins = context.raw || 0;
+                                        const hrs = (mins / 60).toFixed(1);
+                                        return ` ${context.label}: ${mins} min (~${hrs}h)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                updateDOM('total-time-cycle-fmt', formatSimpleTime(totalPeriodCycleMs));
+                updateDOM('total-time-review-fmt', formatSimpleTime(totalPeriodReviewMs));
+                updateDOM('total-time-sum-fmt', formatSimpleTime(totalPeriodMs));
+                const totalHoursDecimal = (totalPeriodMs / 3600000).toFixed(1);
+                updateDOM('total-time-sum-hours', `(${totalHoursDecimal}h)`);
+
+            } else if (noTimePieDiv && timePieContainer) {
+                noTimePieDiv.classList.remove('hidden');
+                timePieContainer.classList.add('hidden');
+                timePieContainer.classList.remove('flex');
+            }
+
+            const accuracyPieCanvas = document.getElementById('accuracyPieChart');
+            const noAccPieDiv = document.getElementById('no-accuracy-pie-data');
+            const accPieContainer = document.getElementById('accuracy-pie-chart-container');
+
+            if (totalPeriodQuestions > 0 && accuracyPieCanvas) {
+                noAccPieDiv.classList.add('hidden');
+                accPieContainer.classList.remove('hidden');
+
+                if (accuracyPieChartInstance) accuracyPieChartInstance.destroy();
+                accuracyPieChartInstance = new Chart(accuracyPieCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Acertos (Certas)', 'Erros (Erradas)'],
+                        datasets: [{
+                            data: [totalPeriodCorrect, totalPeriodIncorrect],
+                            backgroundColor: ['#10b981', '#f43f5e'],
+                            borderWidth: 2,
+                            borderColor: '#020617'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { color: '#cbd5e1', font: { family: 'Inter', size: 12, weight: 'bold' } }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const val = context.raw || 0;
+                                        const pct = totalPeriodQuestions > 0 ? ((val / totalPeriodQuestions) * 100).toFixed(1) : 0;
+                                        return ` ${context.label}: ${val} (${pct}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else if (noAccPieDiv && accPieContainer) {
+                noAccPieDiv.classList.remove('hidden');
+                accPieContainer.classList.add('hidden');
+            }
+
+            const blocksContainer = document.getElementById('subject-performance-blocks-container');
+            if (!blocksContainer) return;
+
+            if (activeList.length === 0) {
+                blocksContainer.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-500 bg-slate-950/40 border border-slate-800 rounded-2xl">
+                        <p class="text-sm">Nenhuma matéria encontrada no ciclo. Adicione matérias na aba "Ciclo" para acompanhar o desempenho.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            blocksContainer.innerHTML = activeList.map(sub => {
+                const qTotal = sub.correct + sub.incorrect;
+                const acc = qTotal > 0 ? (sub.correct / qTotal) * 100 : null;
+                const accFormatted = acc === null ? '--' : `${acc.toFixed(0)}%`;
+                const accColor = acc === null ? 'text-slate-500' : (acc >= 70 ? 'text-emerald-400' : 'text-rose-400');
+
+                return `
+                    <div class="bg-slate-950/80 border border-slate-800 hover:border-slate-700 rounded-2xl p-5 space-y-4 shadow-md transition-all">
+                        <div class="flex items-center justify-between gap-2 border-b border-slate-800/80 pb-3">
+                            <div>
+                                <h4 class="font-extrabold text-white text-base">${sub.name}</h4>
+                                <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">${sub.dayName || 'Cadastrada no Ciclo'}</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-timer text-lg font-bold ${accColor}">${accFormatted}</span>
+                                <span class="block text-[9px] text-slate-500 uppercase font-bold">Aproveitamento</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800/50">
+                            <div>
+                                <span class="text-[10px] text-slate-500 uppercase font-bold block mb-1">Tempo no Período</span>
+                                <div class="text-xs font-bold space-y-0.5">
+                                    <div class="text-amber-400 flex items-center justify-between">
+                                        <span class="text-[10px] text-slate-400">Ciclo:</span>
+                                        <span class="font-timer">${formatSimpleTime(sub.cycleMs)}</span>
+                                    </div>
+                                    <div class="text-purple-400 flex items-center justify-between">
+                                        <span class="text-[10px] text-slate-400">Revisão:</span>
+                                        <span class="font-timer">${formatSimpleTime(sub.reviewMs)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-500 uppercase font-bold block mb-1">Questões Resolvidas</span>
+                                <span class="font-timer text-base font-bold text-white block mt-1">${qTotal} <span class="text-xs font-normal text-slate-400">(${sub.correct}C / ${sub.incorrect}E)</span></span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <span class="text-[10px] uppercase tracking-wider font-bold text-slate-400 block">Registrar Desempenho Rápido:</span>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <button onclick="quickLogQuestion('${sub.id}', '${sub.name.replace(/'/g, "\\'")}', true)" class="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold py-2 px-2 rounded-xl text-xs transition flex items-center justify-center gap-1">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i> 1 Certa
+                                </button>
+                                <button onclick="quickLogQuestion('${sub.id}', '${sub.name.replace(/'/g, "\\'")}', false)" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 font-bold py-2 px-2 rounded-xl text-xs transition flex items-center justify-center gap-1">
+                                    <i data-lucide="plus" class="w-3.5 h-3.5"></i> 1 Errada
+                                </button>
+                                <button onclick="quickLogTimeMinutes('${sub.id}', '${sub.name.replace(/'/g, "\\'")}', 30, 'study')" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 font-bold py-2 px-1.5 rounded-xl text-[11px] transition text-center whitespace-nowrap">
+                                    +30m Ciclo
+                                </button>
+                                <button onclick="quickLogTimeMinutes('${sub.id}', '${sub.name.replace(/'/g, "\\'")}', 30, 'review')" class="bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 font-bold py-2 px-1.5 rounded-xl text-[11px] transition text-center whitespace-nowrap">
+                                    +30m Rev
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
         }
 
         function switchTab(tab) {
@@ -2612,7 +3137,7 @@
             const targetContent = document.getElementById(`tab-content-${tab}`);
             if (targetContent) targetContent.classList.remove('hidden');
 
-            if (tab === 'charts') renderCharts();
+            if (tab === 'charts') setStatsPeriod(state.statsPeriod || 'today');
             else if (tab === 'review') renderReviewTab();
             else if (tab === 'errors') renderErrorsList();
             else if (tab === 'edital') renderEditalTab();
