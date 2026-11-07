@@ -55,41 +55,41 @@
         }
     </style>
 </head>
-<body class="text-slate-200 min-h-screen p-4 md:p-8 selection:bg-amber-500/30 selection:text-amber-200">
+<body class="text-slate-200 min-h-screen p-4 md:p-8 selection:bg-amber-500/30 selection:text-amber-200 bg-gradient-to-br from-[#020617] via-[#040b1e] to-[#020617]">
 
     <div class="max-w-6xl mx-auto">
         <!-- HEADER & LOGO -->
         <header class="text-center mb-10 mt-4 relative no-print">
-            <!-- Top Right Actions -->
-            <div class="absolute right-0 top-0 hidden md:flex items-center gap-2">
-                <button onclick="exportBackup()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-emerald-400 hover:text-emerald-300 text-xs font-bold transition shadow-md hover:border-emerald-500/40" title="Exportar Backup para outro dispositivo">
-                    <i data-lucide="download" class="w-4 h-4"></i> Exportar Backup
-                </button>
-                <label class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-blue-400 hover:text-blue-300 text-xs font-bold transition shadow-md cursor-pointer hover:border-blue-500/40" title="Restaurar de arquivo JSON">
-                    <i data-lucide="upload" class="w-4 h-4"></i> Importar Backup
-                    <input type="file" id="import-file-input" accept=".json" onchange="importBackup(event)" class="hidden">
-                </label>
-                <button onclick="openApiKeyModal()" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-400 hover:text-amber-300 text-xs font-bold transition shadow-md hover:border-amber-500/40">
-                    <i data-lucide="key" class="w-4 h-4"></i> Chave API IA
-                </button>
-            </div>
-
             <div class="inline-flex flex-col items-center justify-center relative">
-                <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 opacity-30 blur-2xl"></div>
+                <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 opacity-20 blur-2xl"></div>
                 
-                <div class="relative z-10 w-32 h-32 md:w-36 md:h-36 mb-4 bg-gradient-to-br from-amber-400 via-amber-600 to-orange-700 rounded-3xl p-1 shadow-2xl flex items-center justify-center transform hover:scale-105 transition-transform duration-300 overflow-hidden">
-                    <div class="w-full h-full bg-slate-950 rounded-[22px] flex items-center justify-center overflow-hidden relative">
+                <div class="relative z-10 w-32 h-32 md:w-36 md:h-36 mb-4 bg-gradient-to-br from-amber-400 via-amber-600 to-orange-700 rounded-[2rem] p-1 shadow-[0_0_30px_rgba(245,158,11,0.2)] flex items-center justify-center transform hover:scale-105 transition-transform duration-300 overflow-hidden">
+                    <div class="w-full h-full bg-slate-950 rounded-[30px] flex items-center justify-center overflow-hidden relative">
                         <img src="IMG_20260128_213717.jpg" alt="Toca do Leão" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/150x150/0f172a/f59e0b?text=Toca+do+Leao';">
                     </div>
                 </div>
 
-                <h1 class="relative text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 uppercase tracking-wider text-center">
+                <h1 class="relative text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-500 uppercase tracking-widest text-center drop-shadow-sm">
                     Toca do Leão Concursos
                 </h1>
             </div>
-            <p class="text-slate-400 font-medium tracking-wide mt-2">Domine seu tempo. Registre seu desempenho. Conquiste sua vaga.</p>
+            <p class="text-slate-400 font-medium tracking-wider mt-3 text-sm md:text-base">Domine seu tempo. Registre seu desempenho. Conquiste sua vaga.</p>
             
-            <div class="flex justify-start md:justify-center gap-2 mt-8 bg-slate-900/50 p-1.5 rounded-2xl md:rounded-full w-full md:w-fit mx-auto border border-slate-800 backdrop-blur-sm overflow-x-auto">
+            <!-- CONTROLES MODERNIZADOS E REPOSICIONADOS -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-6 bg-slate-900/40 p-2 md:p-3 rounded-2xl md:rounded-full w-full max-w-2xl mx-auto border border-slate-800/60 backdrop-blur-md shadow-xl">
+                <button onclick="exportBackup()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 text-xs font-bold transition-all shadow-sm">
+                    <i data-lucide="download" class="w-4 h-4"></i> <span class="hidden sm:inline">Exportar Backup</span><span class="sm:hidden">Exportar</span>
+                </button>
+                <label class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 text-xs font-bold transition-all shadow-sm cursor-pointer">
+                    <i data-lucide="upload" class="w-4 h-4"></i> <span class="hidden sm:inline">Importar Backup</span><span class="sm:hidden">Importar</span>
+                    <input type="file" id="import-file-input" accept=".json" onchange="importBackup(event)" class="hidden">
+                </label>
+                <button onclick="openApiKeyModal()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-950/80 border border-slate-800 text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 text-xs font-bold transition-all shadow-sm">
+                    <i data-lucide="key" class="w-4 h-4"></i> Chave IA
+                </button>
+            </div>
+            
+            <div class="flex justify-start md:justify-center gap-2 mt-6 bg-slate-900/60 p-1.5 rounded-2xl md:rounded-full w-full mx-auto border border-slate-700/50 backdrop-blur-lg overflow-x-auto shadow-2xl">
                 <button id="btn-tab-cycle" onclick="switchTab('cycle')" class="flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 text-xs md:text-sm whitespace-nowrap shrink-0">
                     <i data-lucide="calendar" class="w-4 h-4"></i> Ciclo
                 </button>
@@ -257,18 +257,29 @@
 
         <!-- TAB 2: REVISÕES -->
         <main id="tab-content-review" class="max-w-6xl mx-auto hidden animation-fade pb-12">
-            <div class="mb-8 bg-slate-900/50 p-4 md:p-6 rounded-2xl border border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="mb-8 bg-slate-900/50 p-4 md:p-6 rounded-2xl border border-slate-800/50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-lg">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center">
                         <i data-lucide="book-open" class="text-purple-500 w-5 h-5"></i>
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-100">Painel de Revisões</h2>
-                        <p class="text-slate-500 text-sm">Cronometre o tempo dedicado à revisão das suas matérias.</p>
+                        <p class="text-slate-500 text-sm">Controle revisões automáticas do ciclo ou adicione manuais.</p>
                     </div>
                 </div>
+                <button onclick="restoreAutomaticReviews()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl font-bold transition-colors flex items-center gap-2 border border-slate-700">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Restaurar Automáticas
+                </button>
             </div>
-            <div id="review-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            
+            <div id="review-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6"></div>
+
+            <div class="bg-slate-900/40 p-4 rounded-2xl border border-slate-800/50 flex flex-col sm:flex-row items-center gap-3 max-w-lg">
+                <input id="input-manual-review" type="text" placeholder="Nome da revisão manual avulsa..." class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-purple-500 w-full" onkeypress="if(event.key === 'Enter') addManualReview()">
+                <button onclick="addManualReview()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-5 py-2 rounded-xl text-sm transition-colors shadow-lg shadow-purple-500/20 whitespace-nowrap w-full sm:w-auto flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Adicionar Manual
+                </button>
+            </div>
         </main>
 
         <!-- TAB 3: CADERNO DE ERROS -->
@@ -856,6 +867,7 @@
                 dailyTimeMs: state.dailyTimeMs,
                 subjectTimes: state.subjectTimesMs,
                 days: state.days,
+                manualReviews: state.manualReviews,
                 errorNotebook: state.errorsList,
                 toca_leao_editais: state.editais,
                 toca_leao_active_edital: state.activeEditalId,
@@ -864,25 +876,45 @@
                 performanceLogs: state.performanceLogs,
                 statsPeriod: state.statsPeriod,
                 exportDate: new Date().toISOString(),
-                version: "2.0"
+                version: "2.1"
             };
 
             const jsonStr = JSON.stringify(backupData, null, 2);
+            
+            const textArea = document.createElement("textarea");
+            textArea.value = jsonStr;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            let copied = false;
+            try {
+                copied = document.execCommand('copy');
+            } catch (err) {}
+            document.body.removeChild(textArea);
+
             const blob = new Blob([jsonStr], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             
             const downloadAnchor = document.createElement('a');
             downloadAnchor.href = url;
             downloadAnchor.download = `toca_do_leao_backup_${new Date().toISOString().slice(0, 10)}.json`;
+            downloadAnchor.style.display = 'none';
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
             document.body.removeChild(downloadAnchor);
             
             setTimeout(() => URL.revokeObjectURL(url), 1000);
+            
+            if (copied) {
+                showConfirm("Download iniciado! ⚠️ SE O DOWNLOAD NÃO ACONTECER, o código de backup já foi COPIADO para a sua Área de Transferência. Cole no Bloco de Notas e salve como .json.", () => {});
+            }
         }
 
         function importBackup(event) {
-            const file = event.target.files[0];
+            const inputElement = event.target;
+            const file = inputElement.files[0];
             if (!file) return;
 
             const reader = new FileReader();
@@ -893,7 +925,7 @@
 
                     if (!parsed.days && !parsed.errorNotebook && !parsed.performanceLogs) {
                         showConfirm("Arquivo de backup inválido!", ()=>{});
-                        event.target.value = '';
+                        inputElement.value = '';
                         return;
                     }
 
@@ -903,6 +935,7 @@
                         if (parsed.dailyTimeMs !== undefined) localStorage.setItem('dailyTimeMs', parsed.dailyTimeMs);
                         if (parsed.subjectTimes !== undefined) localStorage.setItem('subjectTimes', JSON.stringify(parsed.subjectTimes));
                         if (parsed.days !== undefined) localStorage.setItem('days', JSON.stringify(parsed.days));
+                        if (parsed.manualReviews !== undefined) localStorage.setItem('manualReviews', JSON.stringify(parsed.manualReviews));
                         if (parsed.errorNotebook !== undefined) localStorage.setItem('errorNotebook', JSON.stringify(parsed.errorNotebook));
                         if (parsed.toca_leao_editais !== undefined) localStorage.setItem('toca_leao_editais', JSON.stringify(parsed.toca_leao_editais));
                         if (parsed.toca_leao_active_edital !== undefined) localStorage.setItem('toca_leao_active_edital', parsed.toca_leao_active_edital);
@@ -918,8 +951,14 @@
                 } catch (err) {
                     showConfirm("Erro ao ler o arquivo JSON: " + err.message, ()=>{});
                 }
-                event.target.value = '';
+                inputElement.value = '';
             };
+            
+            reader.onerror = function() {
+                showConfirm("Erro ao tentar ler o arquivo selecionado.", () => {});
+                inputElement.value = '';
+            };
+            
             reader.readAsText(file);
         }
 
@@ -933,8 +972,8 @@
             {
                 id: 1, name: 'Dia 1',
                 subjects: [
-                    { id: 'sub-init-1', name: 'Português', studyCorrect: 0, studyIncorrect: 0, reviewCorrect: 0, reviewIncorrect: 0 },
-                    { id: 'sub-init-2', name: 'Direito Constitucional', studyCorrect: 0, studyIncorrect: 0, reviewCorrect: 0, reviewIncorrect: 0 }
+                    { id: 'sub-init-1', name: 'Português', studyCorrect: 0, studyIncorrect: 0, reviewCorrect: 0, reviewIncorrect: 0, hiddenInReview: false },
+                    { id: 'sub-init-2', name: 'Direito Constitucional', studyCorrect: 0, studyIncorrect: 0, reviewCorrect: 0, reviewIncorrect: 0, hiddenInReview: false }
                 ]
             }
         ]);
@@ -954,6 +993,7 @@
             activeSubjectId: localStorage.getItem('activeSubjectId') || null,
             subjectTimesMs: safeJSONParse('subjectTimes', {}),
             days: savedDays,
+            manualReviews: safeJSONParse('manualReviews', []),
             errorsList: safeJSONParse('errorNotebook', []),
             editais: safeJSONParse('toca_leao_editais', [
                 {
@@ -1000,6 +1040,7 @@
                 localStorage.setItem('currentActivity', state.currentActivity);
                 localStorage.setItem('subjectTimes', JSON.stringify(state.subjectTimesMs));
                 localStorage.setItem('days', JSON.stringify(state.days));
+                localStorage.setItem('manualReviews', JSON.stringify(state.manualReviews));
                 localStorage.setItem('errorNotebook', JSON.stringify(state.errorsList));
                 localStorage.setItem('toca_leao_editais', JSON.stringify(state.editais));
                 localStorage.setItem('toca_leao_active_edital', state.activeEditalId);
@@ -1157,10 +1198,16 @@
                     state.subjectTimesMs[state.activeSubjectId][state.currentActivity] += actualDelta;
 
                     let currentSubName = 'Matéria';
+                    let foundSub = null;
                     for (const d of state.days) {
-                        const found = d.subjects.find(s => s.id === state.activeSubjectId);
-                        if (found) { currentSubName = found.name; break; }
+                        foundSub = d.subjects.find(s => s.id === state.activeSubjectId);
+                        if (foundSub) { currentSubName = foundSub.name; break; }
                     }
+                    if (!foundSub) {
+                        foundSub = state.manualReviews.find(r => r.id === state.activeSubjectId);
+                        if (foundSub) currentSubName = foundSub.name;
+                    }
+
                     addPerformanceTime(state.activeSubjectId, currentSubName, actualDelta, state.currentActivity);
                 }
 
@@ -1190,6 +1237,9 @@
                 for (const d of state.days) {
                     const found = d.subjects.find(sub => sub.id === state.activeSubjectId);
                     if (found) { currentSub = found; break; }
+                }
+                if (!currentSub) {
+                    currentSub = state.manualReviews.find(sub => sub.id === state.activeSubjectId);
                 }
 
                 if (currentSub) {
@@ -1578,37 +1628,150 @@
             const container = document.getElementById('review-container');
             if (!container) return;
             let allSubjects = [];
-            state.days.forEach(d => d.subjects.forEach(s => allSubjects.push({...s, dayId: d.id})));
+            
+            state.days.forEach(d => {
+                d.subjects.forEach(s => {
+                    if (!s.hiddenInReview) {
+                        allSubjects.push({...s, dayId: d.id, isManual: false});
+                    }
+                });
+            });
+            
+            state.manualReviews.forEach(m => {
+                allSubjects.push({...m, isManual: true});
+            });
+
+            if (allSubjects.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 border border-slate-800 border-dashed rounded-2xl bg-slate-900/30">Nenhuma matéria para revisar.</div>`;
+                return;
+            }
             
             container.innerHTML = allSubjects.map(sub => {
                 const isReviewing = state.activeSubjectId === sub.id && state.currentActivity === 'review';
                 const metrics = getMetrics(sub.reviewCorrect, sub.reviewIncorrect);
                 return `
-                    <div class="group border rounded-2xl p-4 flex flex-col gap-4 ${isReviewing ? 'bg-purple-500/10 border-purple-500/40' : 'bg-slate-950/50 border-slate-800/80'}">
-                        <div class="flex items-center gap-3">
-                            <button onclick="selectActiveSubject('${sub.id}', 'review')" class="w-10 h-10 rounded-full ${isReviewing && state.isTimerRunning ? 'bg-purple-500 text-white' : 'bg-slate-800 text-white'} flex items-center justify-center">
-                                <i data-lucide="${isReviewing && state.isTimerRunning ? 'pause' : 'play'}" class="w-4 h-4 ml-0.5"></i>
-                            </button>
-                            <div class="flex flex-col">
-                                <span class="font-bold text-[15px]">${sub.name}</span>
-                                <span class="text-xs font-timer text-slate-500 flex items-center gap-1">
-                                    <i data-lucide="clock" class="w-3 h-3"></i> 
-                                    <span id="review-val-${sub.id}">${formatSimpleTime(state.subjectTimesMs[sub.id]?.review || 0)}</span>
-                                    <button onclick="resetSubjectTime('${sub.id}', 'review')" class="text-slate-600 hover:text-purple-500 ml-1 transition-colors"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
-                                </span>
+                    <div class="group border rounded-2xl p-4 flex flex-col gap-4 transition-all duration-300 ${isReviewing ? 'bg-purple-500/10 border-purple-500/40 shadow-[0_0_15px_rgba(168,85,247,0.15)]' : 'bg-slate-950/50 border-slate-800/80'}">
+                        <div class="flex items-center justify-between gap-3 w-full">
+                            <div class="flex items-center gap-3 overflow-hidden flex-1">
+                                <button onclick="removeReviewSubject('${sub.id}', ${sub.isManual}, ${sub.dayId || null})" class="text-slate-600 hover:text-rose-500 transition-colors" title="Remover das Revisões"><i data-lucide="x" class="w-4 h-4"></i></button>
+                                <button onclick="selectActiveSubject('${sub.id}', 'review')" class="w-10 h-10 rounded-full ${isReviewing && state.isTimerRunning ? 'bg-purple-500 text-white shadow-lg shadow-purple-500/30' : 'bg-slate-800 text-white hover:bg-slate-700'} flex items-center justify-center transition-colors">
+                                    <i data-lucide="${isReviewing && state.isTimerRunning ? 'pause' : 'play'}" class="w-4 h-4 ml-0.5"></i>
+                                </button>
+                                <div class="flex flex-col min-w-0 flex-1">
+                                    <span class="font-bold truncate text-[15px] ${isReviewing ? 'text-purple-400' : 'text-slate-200'} flex items-center gap-2">
+                                        ${sub.name}
+                                        ${sub.isManual ? '<span class="px-1.5 py-0.5 rounded text-[9px] bg-slate-800 text-slate-400 uppercase tracking-widest border border-slate-700">Manual</span>' : ''}
+                                    </span>
+                                    <span class="text-xs font-timer text-slate-500 flex items-center gap-1">
+                                        <i data-lucide="clock" class="w-3 h-3"></i> 
+                                        <span id="review-val-${sub.id}">${formatSimpleTime(state.subjectTimesMs[sub.id]?.review || 0)}</span>
+                                        <button onclick="resetSubjectTime('${sub.id}', 'review')" class="text-slate-600 hover:text-purple-500 ml-1 transition-colors"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="bg-slate-900/80 rounded-xl p-3 border border-slate-800/50">
                             <div class="flex justify-between mb-2"><span class="text-[10px] uppercase font-bold text-slate-500">Acertos/Erros (Revisão)</span><span class="text-sm font-bold ${metrics.color}">${metrics.percentage}</span></div>
                             <div class="grid grid-cols-2 gap-3">
-                                <input type="number" min="0" value="${sub.reviewCorrect || 0}" onchange="updateSubjectQuestions(${sub.dayId}, '${sub.id}', 'reviewCorrect', this.value)" class="bg-slate-950 p-2 rounded-lg text-emerald-400 text-center font-bold" />
-                                <input type="number" min="0" value="${sub.reviewIncorrect || 0}" onchange="updateSubjectQuestions(${sub.dayId}, '${sub.id}', 'reviewIncorrect', this.value)" class="bg-slate-950 p-2 rounded-lg text-rose-400 text-center font-bold" />
+                                <input type="number" min="0" value="${sub.reviewCorrect || 0}" onchange="updateReviewQuestions('${sub.id}', ${sub.isManual}, ${sub.dayId || null}, 'reviewCorrect', this.value)" class="bg-slate-950 p-2 rounded-lg text-emerald-400 text-center font-bold outline-none focus:ring-1 focus:ring-emerald-500/50" />
+                                <input type="number" min="0" value="${sub.reviewIncorrect || 0}" onchange="updateReviewQuestions('${sub.id}', ${sub.isManual}, ${sub.dayId || null}, 'reviewIncorrect', this.value)" class="bg-slate-950 p-2 rounded-lg text-rose-400 text-center font-bold outline-none focus:ring-1 focus:ring-rose-500/50" />
                             </div>
                         </div>
                     </div>
                 `;
             }).join('');
             lucide.createIcons();
+        }
+
+        function addManualReview() {
+            const input = document.getElementById('input-manual-review');
+            const name = input.value.trim();
+            if (!name) return;
+            const newId = 'rev-man-' + Date.now();
+            state.manualReviews.push({
+                id: newId,
+                name: name,
+                reviewCorrect: 0,
+                reviewIncorrect: 0
+            });
+            state.subjectTimesMs[newId] = { study: 0, review: 0 };
+            input.value = '';
+            saveToStorage();
+            renderReviewTab();
+        }
+
+        function removeReviewSubject(id, isManual, dayId) {
+            showConfirm("Remover esta matéria das revisões?", () => {
+                if (state.activeSubjectId === id && state.currentActivity === 'review') stopFocusing();
+                if (isManual) {
+                    state.manualReviews = state.manualReviews.filter(r => r.id !== id);
+                } else {
+                    state.days = state.days.map(d => {
+                        if (d.id === dayId) {
+                            return { ...d, subjects: d.subjects.map(s => s.id === id ? {...s, hiddenInReview: true} : s) };
+                        }
+                        return d;
+                    });
+                }
+                saveToStorage();
+                renderReviewTab();
+            });
+        }
+
+        function restoreAutomaticReviews() {
+            state.days = state.days.map(d => ({
+                ...d,
+                subjects: d.subjects.map(s => ({...s, hiddenInReview: false}))
+            }));
+            saveToStorage();
+            renderReviewTab();
+            showConfirm("Matérias automáticas restauradas para as revisões!", ()=>{});
+        }
+
+        function updateReviewQuestions(id, isManual, dayId, field, value) {
+            const numVal = value === '' ? 0 : parseInt(value);
+            if (isNaN(numVal) || numVal < 0) return;
+
+            let subName = 'Matéria';
+            let oldVal = 0;
+
+            if (isManual) {
+                state.manualReviews = state.manualReviews.map(r => {
+                    if (r.id === id) {
+                        subName = r.name;
+                        oldVal = r[field] || 0;
+                        return { ...r, [field]: numVal };
+                    }
+                    return r;
+                });
+            } else {
+                state.days = state.days.map(day => {
+                    if (day.id === dayId) {
+                        return { ...day, subjects: day.subjects.map(sub => {
+                            if (sub.id === id) {
+                                subName = sub.name;
+                                oldVal = sub[field] || 0;
+                                return { ...sub, [field]: numVal };
+                            }
+                            return sub;
+                        })};
+                    }
+                    return day;
+                });
+            }
+
+            const diff = numVal - oldVal;
+            if (diff !== 0) {
+                const isCorrectField = field.toLowerCase().includes('correct') && !field.toLowerCase().includes('incorrect');
+                if (isCorrectField) {
+                    recordSubjectQuestions(id, subName, diff, 0);
+                } else {
+                    recordSubjectQuestions(id, subName, 0, diff);
+                }
+            }
+
+            saveToStorage();
+            renderReviewTab();
         }
 
         function openNewContestModal() {
@@ -2832,6 +2995,9 @@
                     allSubjectsMap[s.id] = { id: s.id, name: s.name, dayName: d.name };
                 });
             });
+            state.manualReviews.forEach(r => {
+                allSubjectsMap[r.id] = { id: r.id, name: r.name, dayName: 'Revisão Manual' };
+            });
 
             let aggregated = {};
 
@@ -2878,6 +3044,15 @@
                             aggregated[s.id].incorrect = Math.max(aggregated[s.id].incorrect, (s.studyIncorrect || 0) + (s.reviewIncorrect || 0));
                         }
                     });
+                });
+                state.manualReviews.forEach(r => {
+                    const times = state.subjectTimesMs[r.id] || { study: 0, review: 0 };
+                    if (aggregated[r.id]) {
+                        aggregated[r.id].cycleMs = Math.max(aggregated[r.id].cycleMs, times.study || 0);
+                        aggregated[r.id].reviewMs = Math.max(aggregated[r.id].reviewMs, times.review || 0);
+                        aggregated[r.id].correct = Math.max(aggregated[r.id].correct, r.reviewCorrect || 0);
+                        aggregated[r.id].incorrect = Math.max(aggregated[r.id].incorrect, r.reviewIncorrect || 0);
+                    }
                 });
             }
 
